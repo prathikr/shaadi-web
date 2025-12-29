@@ -190,18 +190,21 @@ body {
     font-size: 5rem;
     color: #8b0000;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .venue-info {
     font-size: 1.8rem;
     color: #4a0404;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .tagline {
     font-size: 1.5rem;
     font-style: italic;
     color: #6b4423;
+    text-align: center;
 }
 
 /* Our Story Section */
