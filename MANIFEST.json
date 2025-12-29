@@ -1,0 +1,35 @@
+{
+  "pallavi.saharia@gmail.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "prathik.rao@gmail.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "guest2@example.com": {
+    "events": ["ceremony"]
+  },
+  "guest3@example.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "guest4@example.com": {
+    "events": ["sangeeth", "ceremony"]
+  },
+  "guest5@example.com": {
+    "events": ["ceremony"]
+  },
+  "guest6@example.com": {
+    "events": ["haldi", "ceremony"]
+  },
+  "guest7@example.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "guest8@example.com": {
+    "events": ["sangeeth", "ceremony"]
+  },
+  "guest9@example.com": {
+    "events": ["ceremony"]
+  },
+  "guest10@example.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  }
+}

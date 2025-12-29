@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathik & Pallavi's Wedding</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-content">
+            <h1>Prathik & Pallavi</h1>
+            <p class="subtitle">Join us in celebrating our wedding</p>
+            <p class="venue">Niner Winery, Paso Robles</p>
+            <div class="email-form">
+                <input type="email" id="guest-email" placeholder="Enter your email to view your invitation">
+                <button onclick="checkGuest()">Enter</button>
+                <p id="error-message" class="error-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Website -->
+    <div id="main-site" class="main-site hidden">
+        <!-- Sticky Navigation -->
+        <nav class="sticky-nav">
+            <img src="{{ url_for('static', filename='images/alpana.png') }}" alt="Alpana Pattern" class="alpana-pattern alpana-left">
+            <div class="nav-container">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#our-story" class="nav-link">Our Story</a>
+                <a href="#events" class="nav-link">Events</a>
+                <a href="#travel" class="nav-link">Travel & Stay</a>
+            </div>
+            <img src="{{ url_for('static', filename='images/alpana.png') }}" alt="Alpana Pattern" class="alpana-pattern alpana-right">
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home" class="section home-section" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('{{ url_for('static', filename='images/landing-page.jpg') }}') center/cover no-repeat;">
+            <h1>Prathik & Pallavi</h1>
+            <p class="venue-info">Niner Winery, Paso Robles</p>
+            <p class="tagline">Where Indian tradition meets wine country</p>
+        </section>
+
+        <!-- Our Story Section -->
+        <section id="our-story" class="section story-section">
+            <h2>Our Story</h2>
+            <div class="story-timeline">
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800" alt="High School">
+                    <div class="story-content">
+                        <h3>High School (Somewhat) Sweethearts</h3>
+                        <p>We met in high school and quickly became inseparable. Our journey began with shared laughs and endless conversations.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Homecoming">
+                    <div class="story-content">
+                        <h3>Homecoming Dance</h3>
+                        <p>Prathik took Pallavi to homecoming, a magical evening that marked the beginning of something special.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800" alt="College">
+                    <div class="story-content">
+                        <h3>College Years Apart</h3>
+                        <p>College took us to different places, but distance only strengthened what we had.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
+                    <div class="story-content">
+                        <h3>Reunited After College</h3>
+                        <p>After college, we found our way back to each other, ready to write the next chapter together.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="section events-section">
+            <h2>Wedding Events</h2>
+            <p class="events-intro">You are invited to the following celebrations:</p>
+            
+            <div id="event-haldi" class="event-card hidden">
+                <h3>Haldi Ceremony</h3>
+                <p>A traditional ceremony where turmeric paste is applied to the bride and groom for blessings and radiance.</p>
+                <p class="event-location">San Jose, California</p>
+            </div>
+
+            <div id="event-sangeeth" class="event-card hidden">
+                <h3>Sangeeth</h3>
+                <p>An evening of music, dance performances, and celebration with family and friends.</p>
+                <p class="event-location">Allegretto Vineyard Resort, Paso Robles</p>
+            </div>
+
+            <div id="event-ceremony" class="event-card hidden">
+                <h3>Wedding Ceremony & Reception</h3>
+                <p>Join us for our wedding ceremony followed by a reception celebrating our union.</p>
+                <p class="event-location">Niner Winery, Paso Robles</p>
+            </div>
+        </section>
+
+        <!-- Travel Section -->
+        <section id="travel" class="section travel-section">
+            <h2>Travel & Stay</h2>
+            <div class="travel-grid">
+                <div class="travel-card">
+                    <h3>Hotel Room Block</h3>
+                    <p>We have reserved a block of rooms for our guests.</p>
+                    <a href="#" class="travel-link">Book Your Room</a>
+                </div>
+                <div class="travel-card">
+                    <h3>Directions from Bay Area</h3>
+                    <p>Paso Robles is approximately 3.5 hours south of the Bay Area via US-101.</p>
+                    <a href="https://maps.google.com/?q=Niner+Wine+Estates+Paso+Robles" target="_blank" class="travel-link">Get Directions</a>
+                </div>
+                <div class="travel-card">
+                    <h3>About Niner Winery</h3>
+                    <p>Niner Wine Estates offers stunning vineyard views and elegant event spaces, blending wine country charm with our celebration.</p>
+                    <a href="https://www.ninerwine.com" target="_blank" class="travel-link">Visit Website</a>
+                </div>
+                <!-- Expandable section for future links -->
+                <div class="travel-card expandable">
+                    <h3>Additional Resources</h3>
+                    <p>More helpful information coming soon...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

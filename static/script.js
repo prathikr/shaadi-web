@@ -1,0 +1,84 @@
+// Smooth scrolling for navigation links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// Check guest email and show appropriate events
+async function checkGuest() {
+    const emailInput = document.getElementById('guest-email');
+    const email = emailInput.value.trim().toLowerCase();
+    const errorMessage = document.getElementById('error-message');
+    
+    if (!email) {
+        errorMessage.textContent = 'Please enter your email address';
+        return;
+    }
+    
+    if (!isValidEmail(email)) {
+        errorMessage.textContent = 'Please enter a valid email address';
+        return;
+    }
+    
+    try {
+        const response = await fetch('/api/check-guest', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email })
+        });
+        
+        const data = await response.json();
+        
+        if (data.found) {
+            // Hide landing page and show main site
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('main-site').classList.remove('hidden');
+            
+            // Show only the events the guest is invited to
+            showEvents(data.events);
+        } else {
+            errorMessage.textContent = 'Email not found. Please check your email or contact the couple.';
+        }
+    } catch (error) {
+        errorMessage.textContent = 'An error occurred. Please try again.';
+        console.error('Error:', error);
+    }
+}
+
+// Show only invited events
+function showEvents(events) {
+    // Hide all event cards first
+    document.getElementById('event-haldi').classList.add('hidden');
+    document.getElementById('event-sangeeth').classList.add('hidden');
+    document.getElementById('event-ceremony').classList.add('hidden');
+    
+    // Show only invited events
+    events.forEach(event => {
+        const eventCard = document.getElementById(`event-${event}`);
+        if (eventCard) {
+            eventCard.classList.remove('hidden');
+        }
+    });
+}
+
+// Email validation helper
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Allow pressing Enter to submit email
+document.getElementById('guest-email')?.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        checkGuest();
+    }
+});
