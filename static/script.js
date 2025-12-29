@@ -6,7 +6,9 @@ document.querySelectorAll('.nav-link').forEach(link => {
         const targetSection = document.getElementById(targetId);
         
         if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
+            const navHeight = document.querySelector('.sticky-nav').offsetHeight;
+            const targetPosition = targetSection.offsetTop - navHeight;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     });
 });

@@ -5,31 +5,28 @@
   "prathik.rao@gmail.com": {
     "events": ["haldi", "sangeeth", "ceremony"]
   },
-  "guest2@example.com": {
+  "anjini@gmail.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "gsaharia@gmail.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "nchandika@gmail.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "raoanil@gmail.com": {
+    "events": ["haldi", "sangeeth", "ceremony"]
+  },
+  "guest1@example.com": {
     "events": ["ceremony"]
   },
-  "guest3@example.com": {
-    "events": ["haldi", "sangeeth", "ceremony"]
+  "guest2@example.com": {
+    "events": ["haldi", "sangeeth"]
   },
   "guest4@example.com": {
     "events": ["sangeeth", "ceremony"]
   },
   "guest5@example.com": {
     "events": ["ceremony"]
-  },
-  "guest6@example.com": {
-    "events": ["haldi", "ceremony"]
-  },
-  "guest7@example.com": {
-    "events": ["haldi", "sangeeth", "ceremony"]
-  },
-  "guest8@example.com": {
-    "events": ["sangeeth", "ceremony"]
-  },
-  "guest9@example.com": {
-    "events": ["ceremony"]
-  },
-  "guest10@example.com": {
-    "events": ["haldi", "sangeeth", "ceremony"]
   }
 }
