@@ -46,7 +46,7 @@ async function checkGuest() {
             document.getElementById('main-site').classList.remove('hidden');
             
             // Show only the events the guest is invited to
-            showEvents(data.events, data.rsvp_status);
+            showEvents(data.events, data.rsvp_status, data.name);
         } else {
             errorMessage.textContent = 'Email not found. Please check your email or contact the couple.';
         }
@@ -57,7 +57,13 @@ async function checkGuest() {
 }
 
 // Show only invited events with RSVP status
-function showEvents(events, rsvpStatus) {
+function showEvents(events, rsvpStatus, firstName) {
+    // Update events intro with first name
+    const eventsIntro = document.querySelector('.events-intro');
+    if (eventsIntro && firstName) {
+        eventsIntro.innerHTML = `<strong>${firstName}</strong>, we hope you can make it to the following celebrations:`;
+    }
+    
     // Hide all event cards first
     document.getElementById('event-haldi').classList.add('hidden');
     document.getElementById('event-sangeeth').classList.add('hidden');
