@@ -68,6 +68,18 @@ function showEvents(events) {
             eventCard.classList.remove('hidden');
         }
     });
+    
+    // Adjust section height based on number of events
+    const eventsSection = document.getElementById('events');
+    const numEvents = events.length;
+    
+    if (numEvents === 1) {
+        eventsSection.style.minHeight = '50vh';
+    } else if (numEvents === 2) {
+        eventsSection.style.minHeight = '70vh';
+    } else {
+        eventsSection.style.minHeight = '100vh';
+    }
 }
 
 // Email validation helper
