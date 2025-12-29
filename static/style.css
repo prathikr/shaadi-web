@@ -15,11 +15,13 @@ body {
 /* Landing Page */
 .landing-page {
     height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(135deg, #8b0000 0%, #4a0404 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #f4e4d7;
+    overflow: hidden;
 }
 
 .landing-content {
@@ -160,7 +162,7 @@ body {
 
 /* Sections */
 .section {
-    min-height: 100vh;
+    min-height: calc(100vh - 8vh);
     padding: 80px 20px;
 }
 
