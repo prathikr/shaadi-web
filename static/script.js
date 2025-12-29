@@ -46,7 +46,7 @@ async function checkGuest() {
             document.getElementById('main-site').classList.remove('hidden');
             
             // Show only the events the guest is invited to
-            showEvents(data.events);
+            showEvents(data.events, data.rsvp_status);
         } else {
             errorMessage.textContent = 'Email not found. Please check your email or contact the couple.';
         }
@@ -56,8 +56,8 @@ async function checkGuest() {
     }
 }
 
-// Show only invited events
-function showEvents(events) {
+// Show only invited events with RSVP status
+function showEvents(events, rsvpStatus) {
     // Hide all event cards first
     document.getElementById('event-haldi').classList.add('hidden');
     document.getElementById('event-sangeeth').classList.add('hidden');
@@ -68,6 +68,23 @@ function showEvents(events) {
         const eventCard = document.getElementById(`event-${event}`);
         if (eventCard) {
             eventCard.classList.remove('hidden');
+            
+            // Add RSVP status indicator
+            let rsvpIndicator = eventCard.querySelector('.rsvp-indicator');
+            if (!rsvpIndicator) {
+                rsvpIndicator = document.createElement('div');
+                rsvpIndicator.className = 'rsvp-indicator';
+                eventCard.insertBefore(rsvpIndicator, eventCard.firstChild);
+            }
+            
+            // Set RSVP indicator content based on status
+            if (rsvpStatus === 'going') {
+                rsvpIndicator.innerHTML = '<span class="rsvp-going">✓</span>';
+            } else if (rsvpStatus === 'not going') {
+                rsvpIndicator.innerHTML = '<span class="rsvp-not-going">✗</span>';
+            } else {
+                rsvpIndicator.innerHTML = '<span class="rsvp-pending">Yet to RSVP</span>';
+            }
         }
     });
     

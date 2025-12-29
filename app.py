@@ -58,9 +58,17 @@ def check_guest():
             events_invited = guest_row.iloc[0]['Event(s) invited']
             events = parse_events(events_invited)
             
+            # Get RSVP status
+            rsvp_status = guest_row.iloc[0].get('RSVP', None)
+            if pd.isna(rsvp_status):
+                rsvp_status = None
+            else:
+                rsvp_status = str(rsvp_status).strip().lower()
+            
             return jsonify({
                 'found': True,
-                'events': events
+                'events': events,
+                'rsvp_status': rsvp_status
             })
         
         return jsonify({'found': False})
