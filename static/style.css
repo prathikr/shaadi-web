@@ -5,9 +5,11 @@
 }
 
 body {
-    font-family: 'Apple Chancery', 'cursive';
+    font-family: 'Quintessential', 'Georgia', cursive;
     color: #2c1810;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Landing Page */
