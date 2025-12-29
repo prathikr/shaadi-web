@@ -8,6 +8,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .home-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                        url('{{ url_for('static', filename='images/heart-hill.jpg') }}') center/cover no-repeat;
+        }
+        @media (max-width: 768px) {
+            .home-section {
+                background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                            url('{{ url_for('static', filename='images/heart-hill-mobile.jpg') }}') center/cover no-repeat;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Landing Page -->
@@ -15,7 +27,7 @@
         <div class="landing-content">
             <h1>Prathik & Pallavi</h1>
             <p class="subtitle">Join us in celebrating our wedding</p>
-            <p class="venue">Niner Winery, Paso Robles</p>
+            <p class="venue">Niner Wine Estates, Paso Robles</p>
             <div class="email-form">
                 <input type="email" id="guest-email" placeholder="Enter your email to view your invitation">
                 <button onclick="checkGuest()">Enter</button>
@@ -39,9 +51,9 @@
         </nav>
 
         <!-- Home Section -->
-        <section id="home" class="section home-section" style="background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('{{ url_for('static', filename='images/landing-page.jpg') }}') center/cover no-repeat;">
+        <section id="home" class="section home-section">
             <h1>Prathik & Pallavi</h1>
-            <p class="venue-info">Niner Winery, Paso Robles</p>
+            <p class="venue-info">Niner Wine Estates, Paso Robles</p>
             <p class="tagline">Where Indian tradition meets wine country</p>
         </section>
 
@@ -53,28 +65,56 @@
                     <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800" alt="High School">
                     <div class="story-content">
                         <h3>High School (Somewhat) Sweethearts</h3>
-                        <p>We met in high school and quickly became inseparable. Our journey began with shared laughs and endless conversations.</p>
+                        <p>We met in high school where our journey began with shared laughs and endless conversations. We dated for 3 months during our sophomore year, and Prathik took Pallavi to the Homecoming dance for a magical evening.</p>
                     </div>
                 </div>
                 <div class="story-item">
                     <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Homecoming">
                     <div class="story-content">
-                        <h3>Homecoming Dance</h3>
-                        <p>Prathik took Pallavi to homecoming, a magical evening that marked the beginning of something special.</p>
+                        <h3>Time Apart</h3>
+                        <p>We eventually decided to spend time apart pursuing our individual dreams and goals, growing as individuals while cherishing the memories we shared.</p>
                     </div>
                 </div>
                 <div class="story-item">
                     <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800" alt="College">
                     <div class="story-content">
                         <h3>College Years Apart</h3>
-                        <p>College took us to different places, but distance only strengthened what we had.</p>
+                        <p>College took us to different places – Portland and Los Angeles – but distance only strengthened our friendship.</p>
                     </div>
                 </div>
                 <div class="story-item">
                     <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
                     <div class="story-content">
                         <h3>Reunited After College</h3>
-                        <p>After college, we found our way back to each other, ready to write the next chapter together.</p>
+                        <p>After college, our friendship strengthened while we lived states apart on the West Coast.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
+                    <div class="story-content">
+                        <h3>Feels Like Home</h3>
+                        <p>We finally ended up in our home town of San Jose, California and decided to revisit those cherished high school memories and create new ones together.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
+                    <div class="story-content">
+                        <h3>Small Worlds Collide</h3>
+                        <p>After a few weeks of dating, we found out our families had known each other for years via Cisco, which further strengthened the bond between our families.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
+                    <div class="story-content">
+                        <h3>Long Distance</h3>
+                        <p>Boston and San Jose couldn't be further apart, but our bond remained strong despite the miles.</p>
+                    </div>
+                </div>
+                <div class="story-item">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
+                    <div class="story-content">
+                        <h3>The Engagement</h3>
+                        <p>Story time!</p>
                     </div>
                 </div>
             </div>
@@ -92,7 +132,7 @@
             </div>
 
             <div id="event-sangeeth" class="event-card hidden">
-                <h3>Sangeeth</h3>
+                <h3>Sangeet</h3>
                 <p>An evening of music, dance performances, and celebration with family and friends.</p>
                 <p class="event-location">Allegretto Vineyard Resort, Paso Robles</p>
             </div>
@@ -100,7 +140,7 @@
             <div id="event-ceremony" class="event-card hidden">
                 <h3>Wedding Ceremony & Reception</h3>
                 <p>Join us for our wedding ceremony followed by a reception celebrating our union.</p>
-                <p class="event-location">Niner Winery, Paso Robles</p>
+                <p class="event-location">Niner Wine Estates, Paso Robles</p>
             </div>
         </section>
 
@@ -119,7 +159,7 @@
                     <a href="https://maps.google.com/?q=Niner+Wine+Estates+Paso+Robles" target="_blank" class="travel-link">Get Directions</a>
                 </div>
                 <div class="travel-card">
-                    <h3>About Niner Winery</h3>
+                    <h3>About Niner Wine Estates</h3>
                     <p>Niner Wine Estates offers stunning vineyard views and elegant event spaces, blending wine country charm with our celebration.</p>
                     <a href="https://www.ninerwine.com" target="_blank" class="travel-link">Visit Website</a>
                 </div>
