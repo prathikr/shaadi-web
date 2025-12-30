@@ -108,12 +108,12 @@ function showEvents(events, rsvpStatus, firstName) {
         
         if (preReceptionEvents.length > 0) {
             const eventsList = preReceptionEvents.join(', ');
-            attireHTML = `<p>• ${eventsList}: Indian attire</p>`;
+            attireHTML = `<p>• ${eventsList}: Indian Formal</p>`;
         }
         
         // Wedding reception always has the option for black tie or Indian
         if (hasCeremony) {
-            attireHTML += '<p>• Wedding Reception: Black tie or Indian attire</p>';
+            attireHTML += '<p>• Wedding Reception: Western or Indian Formal</p>';
         }
         
         attireInfo.innerHTML = attireHTML;

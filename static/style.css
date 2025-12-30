@@ -510,12 +510,33 @@ body {
     
     .story-item {
         flex-direction: column !important;
+        height: auto;
+        margin-bottom: 40px;
+    }
+    
+    .story-gallery {
+        width: 100%;
+        max-width: 350px;
+        height: 400px;
+        margin: 0 auto;
+    }
+    
+    .story-gallery .gallery-image {
+        max-width: 350px;
+        max-height: 400px;
     }
     
     .story-item img {
         width: 100%;
-        max-width: 300px;
+        max-width: 350px;
+        max-height: 400px;
         height: auto;
+        margin: 0 auto;
+    }
+    
+    .story-content {
+        text-align: center;
+        margin-top: 20px;
     }
     
     .nav-container {
@@ -524,5 +545,14 @@ body {
     
     .nav-link {
         font-size: 0.9rem;
+    }
+    
+    .gallery-arrow {
+        font-size: 2rem;
+        padding: 10px 8px;
+    }
+    
+    .gallery-dots {
+        bottom: 30px;
     }
 }
