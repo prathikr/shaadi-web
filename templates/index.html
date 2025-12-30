@@ -46,6 +46,7 @@
                 <a href="#our-story" class="nav-link">Our Story</a>
                 <a href="#events" class="nav-link">Events</a>
                 <a href="#travel" class="nav-link">Travel & Stay</a>
+                <a href="#more-info" class="nav-link">More Info</a>
             </div>
             <img src="{{ url_for('static', filename='images/alpana.png') }}" alt="Alpana Pattern" class="alpana-pattern alpana-right">
         </nav>
@@ -62,49 +63,84 @@
             <h2>Our Story</h2>
             <div class="story-timeline">
                 <div class="story-item">
-                    <img src="{{ url_for('static', filename='images/high-school-sweethearts.jpg') }}" alt="High School">
+                    <div class="story-gallery" data-gallery="high-school-sweethearts">
+                        <img src="{{ url_for('static', filename='images/high-school-sweethearts.jpg') }}" alt="High School" class="gallery-image">
+                        <button class="gallery-arrow gallery-prev" onclick="navigateGallery(this, -1)">&lt;</button>
+                        <button class="gallery-arrow gallery-next" onclick="navigateGallery(this, 1)">&gt;</button>
+                        <div class="gallery-dots"></div>
+                    </div>
                     <div class="story-content">
                         <h3>High School (Somewhat) Sweethearts</h3>
                         <p>We met in high school where our journey began with shared laughs and endless conversations. We dated for 3 months during our sophomore year, and Prathik took Pallavi to the Homecoming dance for a magical evening.</p>
                     </div>
                 </div>
                 <div class="story-item">
-                    <img src="{{ url_for('static', filename='images/college-years-apart.jpg') }}" alt="College Years Apart">
+                    <div class="story-gallery" data-gallery="college-years-apart">
+                        <img src="{{ url_for('static', filename='images/college-years-apart.jpg') }}" alt="College Years Apart" class="gallery-image">
+                        <button class="gallery-arrow gallery-prev" onclick="navigateGallery(this, -1)">&lt;</button>
+                        <button class="gallery-arrow gallery-next" onclick="navigateGallery(this, 1)">&gt;</button>
+                        <div class="gallery-dots"></div>
+                    </div>
                     <div class="story-content">
                         <h3>College Years Apart</h3>
                         <p>College took us to different places – Portland and Los Angeles – but distance only strengthened our friendship.</p>
                     </div>
                 </div>
                 <div class="story-item">
-                    <img src="{{ url_for('static', filename='images/reunited.jpg') }}" alt="Reunion">
+                    <div class="story-gallery" data-gallery="reunited">
+                        <img src="{{ url_for('static', filename='images/reunited.jpg') }}" alt="Reunion" class="gallery-image">
+                        <button class="gallery-arrow gallery-prev" onclick="navigateGallery(this, -1)">&lt;</button>
+                        <button class="gallery-arrow gallery-next" onclick="navigateGallery(this, 1)">&gt;</button>
+                        <div class="gallery-dots"></div>
+                    </div>
                     <div class="story-content">
                         <h3>Reunited After College</h3>
                         <p>After college, our friendship strengthened while we lived states apart on the West Coast.</p>
                     </div>
                 </div>
                 <div class="story-item">
-                    <img src="{{ url_for('static', filename='images/feels-like-home.jpg') }}" alt="Feels Like Home">
+                    <div class="story-gallery" data-gallery="feels-like-home">
+                        <img src="{{ url_for('static', filename='images/feels-like-home.jpg') }}" alt="Feels Like Home" class="gallery-image">
+                        <button class="gallery-arrow gallery-prev" onclick="navigateGallery(this, -1)">&lt;</button>
+                        <button class="gallery-arrow gallery-next" onclick="navigateGallery(this, 1)">&gt;</button>
+                        <div class="gallery-dots"></div>
+                    </div>
                     <div class="story-content">
                         <h3>Feels Like Home</h3>
                         <p>We finally ended up near our home town and decided to revisit those cherished high school memories and create new ones together.</p>
                     </div>
                 </div>
                 <div class="story-item">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
+                    <div class="story-gallery" data-gallery="small-worlds-collide">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion" class="gallery-image">
+                        <button class="gallery-arrow gallery-prev" onclick="navigateGallery(this, -1)">&lt;</button>
+                        <button class="gallery-arrow gallery-next" onclick="navigateGallery(this, 1)">&gt;</button>
+                        <div class="gallery-dots"></div>
+                    </div>
                     <div class="story-content">
                         <h3>Small Worlds Collide</h3>
                         <p>After a few weeks of dating, we found out our families had known each other for years via Cisco, which further strengthened the bond between our families.</p>
                     </div>
                 </div>
                 <div class="story-item">
-                    <img src="{{ url_for('static', filename='images/long-distance.jpg') }}" alt="Long Distance">
+                    <div class="story-gallery" data-gallery="long-distance">
+                        <img src="{{ url_for('static', filename='images/long-distance.jpg') }}" alt="Long Distance" class="gallery-image">
+                        <button class="gallery-arrow gallery-prev" onclick="navigateGallery(this, -1)">&lt;</button>
+                        <button class="gallery-arrow gallery-next" onclick="navigateGallery(this, 1)">&gt;</button>
+                        <div class="gallery-dots"></div>
+                    </div>
                     <div class="story-content">
                         <h3>Long Distance</h3>
                         <p>Boston and Menlo Park couldn't be further apart, but our bond remained strong despite the miles.</p>
                     </div>
                 </div>
                 <div class="story-item">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion">
+                    <div class="story-gallery" data-gallery="the-engagement">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Reunion" class="gallery-image">
+                        <button class="gallery-arrow gallery-prev" onclick="navigateGallery(this, -1)">&lt;</button>
+                        <button class="gallery-arrow gallery-next" onclick="navigateGallery(this, 1)">&gt;</button>
+                        <div class="gallery-dots"></div>
+                    </div>
                     <div class="story-content">
                         <h3>The Engagement</h3>
                         <p>Story time!</p>
@@ -121,7 +157,7 @@
             <div id="event-haldi" class="event-card hidden">
                 <h3>Haldi Ceremony</h3>
                 <p>A traditional ceremony where turmeric paste is applied to the bride and groom for blessings and radiance.</p>
-                <p class="event-location">San Jose, California</p>
+                <p class="event-location">Saharia Family AirBnb, Paso Robles</p>
             </div>
 
             <div id="event-sangeeth" class="event-card hidden">
@@ -159,10 +195,30 @@
                     <p>Niner Wine Estates offers stunning vineyard views and elegant event spaces, blending wine country charm with our celebration.</p>
                     <a href="https://www.ninerwine.com" target="_blank" class="travel-link">Visit Website</a>
                 </div>
-                <!-- Expandable section for future links -->
-                <div class="travel-card expandable">
-                    <h3>Additional Resources</h3>
-                    <p>More helpful information coming soon...</p>
+            </div>
+        </section>
+
+        <!-- More Info Section -->
+        <section id="more-info" class="section more-info-section">
+            <h2>More Info</h2>
+            <div class="info-content">
+                <div class="info-block">
+                    <h3>👔 Attire</h3>
+                    <div id="attire-info">
+                        <p>• All events: Indian attire</p>
+                        <p>• Wedding Reception: Black tie or Indian attire</p>
+                    </div>
+                </div>
+                <hr class="info-divider">
+                <div class="info-block">
+                    <h3>🍷 Age Policy</h3>
+                    <p>• No guests under 21 years of age, as events will be held at a winery</p>
+                </div>
+                <hr class="info-divider">
+                <div class="info-block">
+                    <h3>📞 Contact</h3>
+                    <p>• Prathik Rao: (408) 768-2611</p>
+                    <p>• Pallavi Saharia: (408) 750-4188</p>
                 </div>
             </div>
         </section>
