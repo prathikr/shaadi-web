@@ -489,11 +489,14 @@ body {
         width: 100%;
         max-width: 350px;
         height: auto;
+        min-height: auto;
         margin: 0 auto;
     }
     
     .story-gallery .gallery-image {
+        width: 100%;
         max-width: 350px;
+        height: auto;
         max-height: 400px;
     }
     
