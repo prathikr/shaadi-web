@@ -59,7 +59,7 @@ async function checkGuest() {
             
             // Email not found, retry
             if (attempt < maxRetries) {
-                errorMessage.textContent = `Searching... (attempt ${attempt + 2} of ${maxRetries + 1})`;
+                errorMessage.textContent = 'Logging in...';
                 await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
             }
             
@@ -69,7 +69,7 @@ async function checkGuest() {
             
             // If not the last attempt, wait before retrying
             if (attempt < maxRetries) {
-                errorMessage.textContent = `Loading... (attempt ${attempt + 2} of ${maxRetries + 1})`;
+                errorMessage.textContent = 'Logging in...';
                 await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
             }
         }
