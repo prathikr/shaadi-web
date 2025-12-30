@@ -213,17 +213,8 @@ async function initializeGalleries() {
             arrows.forEach(arrow => arrow.style.display = 'block');
         }
         
-        // Create dots
-        const dotsContainer = gallery.querySelector('.gallery-dots');
-        if (dotsContainer && images.length > 1) {
-            dotsContainer.innerHTML = '';
-            images.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.className = 'gallery-dot' + (index === 0 ? ' active' : '');
-                dot.onclick = () => goToImage(galleryName, index);
-                dotsContainer.appendChild(dot);
-            });
-        }
+        // Add touch swipe support for mobile
+        addSwipeSupport(gallery, galleryName);
     }
 }
 
@@ -249,35 +240,49 @@ function navigateGallery(button, direction) {
     // Update image
     const img = gallery.querySelector('.gallery-image');
     img.src = data.images[data.currentIndex];
-    
-    // Update dots
-    updateDots(gallery, data.currentIndex);
 }
 
-function goToImage(galleryName, index) {
+// Add swipe support for mobile
+function addSwipeSupport(gallery, galleryName) {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    gallery.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    gallery.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe(gallery, galleryName);
+    }, { passive: true });
+    
+    function handleSwipe(gallery, galleryName) {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left - next image
+                navigateGalleryByName(galleryName, 1);
+            } else {
+                // Swipe right - previous image
+                navigateGalleryByName(galleryName, -1);
+            }
+        }
+    }
+}
+
+function navigateGalleryByName(galleryName, direction) {
     const data = galleryData[galleryName];
-    if (!data) return;
+    if (!data || data.images.length <= 1) return;
     
-    data.currentIndex = index;
+    // Update index
+    data.currentIndex = (data.currentIndex + direction + data.images.length) % data.images.length;
     
-    // Find the gallery element
+    // Find gallery and update image
     const gallery = document.querySelector(`[data-gallery="${galleryName}"]`);
     const img = gallery.querySelector('.gallery-image');
     img.src = data.images[data.currentIndex];
-    
-    // Update dots
-    updateDots(gallery, data.currentIndex);
-}
-
-function updateDots(gallery, activeIndex) {
-    const dots = gallery.querySelectorAll('.gallery-dot');
-    dots.forEach((dot, index) => {
-        if (index === activeIndex) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
-    });
 }
 
 // Allow pressing Enter to submit email
