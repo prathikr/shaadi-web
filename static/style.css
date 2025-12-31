@@ -51,6 +51,33 @@ body {
     font-style: italic;
 }
 
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-item span:first-child {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #8b0000;
+    line-height: 1;
+}
+
+.countdown-item .label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
 .email-form {
     display: flex;
     flex-direction: column;
@@ -475,6 +502,14 @@ body {
 @media (max-width: 768px) {
     .landing-content h1 {
         font-size: 2rem;
+    }
+
+    .countdown {
+        gap: 15px;
+    }
+
+    .countdown-item span:first-child {
+        font-size: 1.5rem;
     }
     
     .home-section h1 {

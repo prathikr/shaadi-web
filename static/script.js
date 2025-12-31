@@ -291,3 +291,31 @@ document.getElementById('guest-email')?.addEventListener('keypress', function(e)
         checkGuest();
     }
 });
+
+// Countdown Timer
+function updateCountdown() {
+    const weddingDate = new Date('June 16, 2028 00:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) {
+        document.getElementById('countdown').innerHTML = "We're Married!";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const daysEl = document.getElementById('days');
+    if (daysEl) {
+        daysEl.innerText = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+    }
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown(); // Initial call
