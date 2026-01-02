@@ -113,7 +113,7 @@ function showEvents(events, rsvpStatus, firstName) {
         
         // Wedding reception always has the option for black tie or Indian
         if (hasCeremony) {
-            attireHTML += '<p>• Wedding Reception: Western or Indian Formal</p>';
+            attireHTML += '<p>• Wedding Reception: Indian Formal or Western Formal</p>';
         }
         
         attireInfo.innerHTML = attireHTML;
