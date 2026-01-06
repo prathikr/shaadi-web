@@ -92,33 +92,6 @@ function showEvents(events, rsvpStatus, firstName) {
         eventsIntro.innerHTML = `<strong>${firstName}</strong>, we hope you can make it to the following celebrations:`;
     }
     
-    // Update attire info based on invited events
-    const attireInfo = document.getElementById('attire-info');
-    if (attireInfo) {
-        let attireHTML = '';
-        const hasHaldi = events.includes('haldi');
-        const hasSangeet = events.includes('sangeeth');
-        const hasCeremony = events.includes('ceremony');
-        
-        // Build the pre-reception events list
-        let preReceptionEvents = [];
-        if (hasHaldi) preReceptionEvents.push('Haldi');
-        if (hasSangeet) preReceptionEvents.push('Sangeet');
-        if (hasCeremony) preReceptionEvents.push('Wedding Ceremony');
-        
-        if (preReceptionEvents.length > 0) {
-            const eventsList = preReceptionEvents.join(', ');
-            attireHTML = `<p>• ${eventsList}: Indian Formal</p>`;
-        }
-        
-        // Wedding reception always has the option for black tie or Indian
-        if (hasCeremony) {
-            attireHTML += '<p>• Wedding Reception: Indian Formal or Western Formal</p>';
-        }
-        
-        attireInfo.innerHTML = attireHTML;
-    }
-    
     // Hide all event cards first
     document.getElementById('event-haldi').classList.add('hidden');
     document.getElementById('event-sangeeth').classList.add('hidden');
@@ -202,7 +175,9 @@ async function initializeGalleries() {
         // Store gallery data
         galleryData[galleryName] = {
             images: images,
-            currentIndex: 0
+            currentIndex: 0,
+            timer: null,
+            isAnimating: false
         };
         
         // Show/hide arrows based on number of images
@@ -211,11 +186,26 @@ async function initializeGalleries() {
             arrows.forEach(arrow => arrow.style.display = 'none');
         } else {
             arrows.forEach(arrow => arrow.style.display = 'block');
+            startAutoRotation(galleryName);
         }
         
         // Add touch swipe support for mobile
         addSwipeSupport(gallery, galleryName);
     }
+}
+
+function startAutoRotation(galleryName) {
+    const data = galleryData[galleryName];
+    if (data.timer) clearInterval(data.timer);
+    data.timer = setInterval(() => {
+        navigateGalleryByName(galleryName, 1);
+    }, 5000);
+}
+
+function resetAutoRotation(galleryName) {
+    const data = galleryData[galleryName];
+    if (data.timer) clearInterval(data.timer);
+    startAutoRotation(galleryName);
 }
 
 function checkImageExists(url) {
@@ -230,16 +220,9 @@ function checkImageExists(url) {
 function navigateGallery(button, direction) {
     const gallery = button.closest('.story-gallery');
     const galleryName = gallery.getAttribute('data-gallery');
-    const data = galleryData[galleryName];
     
-    if (!data || data.images.length <= 1) return;
-    
-    // Update index
-    data.currentIndex = (data.currentIndex + direction + data.images.length) % data.images.length;
-    
-    // Update image
-    const img = gallery.querySelector('.gallery-image');
-    img.src = data.images[data.currentIndex];
+    navigateGalleryByName(galleryName, direction);
+    resetAutoRotation(galleryName);
 }
 
 // Add swipe support for mobile
@@ -268,21 +251,66 @@ function addSwipeSupport(gallery, galleryName) {
                 // Swipe right - previous image
                 navigateGalleryByName(galleryName, -1);
             }
+            resetAutoRotation(galleryName);
         }
     }
 }
 
 function navigateGalleryByName(galleryName, direction) {
     const data = galleryData[galleryName];
-    if (!data || data.images.length <= 1) return;
+    if (!data || data.images.length <= 1 || data.isAnimating) return;
     
-    // Update index
-    data.currentIndex = (data.currentIndex + direction + data.images.length) % data.images.length;
-    
-    // Find gallery and update image
+    data.isAnimating = true;
     const gallery = document.querySelector(`[data-gallery="${galleryName}"]`);
-    const img = gallery.querySelector('.gallery-image');
-    img.src = data.images[data.currentIndex];
+    const currentImg = gallery.querySelector('.gallery-image');
+    
+    // Calculate new index
+    data.currentIndex = (data.currentIndex + direction + data.images.length) % data.images.length;
+    const nextImageUrl = data.images[data.currentIndex];
+    
+    // Create new image element
+    const nextImg = document.createElement('img');
+    nextImg.src = nextImageUrl;
+    nextImg.className = 'gallery-image animating';
+    nextImg.alt = currentImg.alt;
+    
+    // Set initial position for next image
+    // If direction is 1 (Next), slide in from Right (150% -> 50%)
+    // If direction is -1 (Prev), slide in from Left (-50% -> 50%)
+    nextImg.style.left = direction > 0 ? '150%' : '-50%';
+    
+    // Append to gallery
+    // Insert before arrows to stay behind correct z-index
+    const firstArrow = gallery.querySelector('.gallery-arrow');
+    gallery.insertBefore(nextImg, firstArrow);
+    
+    // Fix gallery height during animation to prevent collapse
+    gallery.style.height = gallery.offsetHeight + 'px';
+    
+    // Prepare current image for animation
+    currentImg.classList.add('animating');
+    currentImg.style.left = '50%'; // Ensure it starts at center
+    
+    // Force reflow
+    void nextImg.offsetWidth;
+    
+    // Start animation
+    // Next: Current goes -50%, Next goes 50%
+    // Prev: Current goes 150%, Next goes 50%
+    currentImg.style.left = direction > 0 ? '-50%' : '150%';
+    nextImg.style.left = '50%';
+    
+    // Cleanup after animation
+    setTimeout(() => {
+        if (gallery.contains(currentImg)) {
+            gallery.removeChild(currentImg);
+        }
+        nextImg.classList.remove('animating');
+        nextImg.style.left = ''; // Reset to flow
+        nextImg.style.transform = ''; // Reset transform
+        gallery.style.height = ''; // Reset height auto
+        data.isAnimating = false;
+    }, 500); // Match CSS transition time
 }
 
 // Allow pressing Enter to submit email

@@ -272,6 +272,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .story-gallery .gallery-image {
@@ -281,6 +282,14 @@ body {
     object-fit: contain;
     border-radius: 10px;
     display: block;
+    position: relative;
+    transition: left 0.5s ease-in-out;
+}
+
+.gallery-image.animating {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .story-content {
@@ -443,6 +452,13 @@ body {
 .event-location {
     font-weight: bold;
     color: #6b4423;
+}
+
+.event-card .event-attire {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #6b4423;
+    margin-top: 5px;
 }
 
 /* Travel Section */
